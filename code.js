@@ -1,15 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Price ranges
-    const prices = {
-        bridalBouquet:       { min: 195, max: 350,  val: 0 , desc: 'Created using high quality blooms to suit your theme and style.'},
-        bridesmaidBouquet:   { min: 85,  max: 155,  val: 0 , desc: 'Created to compliment the bride and their dresses.'},
-        buttonhole:          { min: 10,  max: 25,   val: 0 , desc: 'Be it a single bloom or something more elaborate such as a pocket square or lapel design.'},
-        corsage:             { min: 15,  max: 30,   val: 0 , desc: 'Delicate wired &amp; glued designs for female members of the bridal party. Can be worn in multiple ways. \n (Mums, Grandmother etc)'},
-        centrepiece:         { min: 45,  max: 250,  val: 0 , desc: 'From low and compact posies to tall statement florals, we can do it all!'},
-        ceremonyArrangement: { min: 75,  max: 150,  val: 0 , desc: 'Designs to enhance your ceremony room and the moment you say ‘I Do’.'},
-        pedestalDisplay:     { min: 250, max: 500,  val: 0 , desc: 'Large front facing designs to be utilised throughout the day.'},
-        statementFlorals:    { min: 1000, max: 5000, val: 0 , desc: 'Large installations for your special day.'}
+    const pricesClassic = {
+        bridalBouquet:       { min: 185, max: 290,  val: 0 },
+        bridesmaidBouquet:   { min: 75,  max: 125,  val: 0 },
+        buttonhole:          { min: 10,  max: 15,   val: 0 },
+        corsage:             { min: 15,  max: 25,   val: 0 },
+        lowCentrepiece:      { min: 65,  max: 90,  val: 0 },
+        highCentrepiece:     { min: 180, max: 280,  val: 0 },
+        pedestalDisplay:     { min: 250, max: 400,  val: 0 },
+        statementFlorals:    { min: 2000,max: 5000, val: 0 }
     };
+
+    const pricesCouture = {
+        bridalBouquet:       { min: 290, max: 400,  val: 0 },
+        bridesmaidBouquet:   { min: 125, max: 250,  val: 0 },
+        buttonhole:          { min: 20,  max: 35,   val: 0 },
+        corsage:             { min: 25,  max: 50,   val: 0 },
+        lowCentrepiece:      { min: 125, max: 250,  val: 0 },
+        highCentrepiece:     { min: 300, max: 500,  val: 0 },
+        pedestalDisplay:     { min: 500, max: 800,  val: 0 },
+        statementFlorals:    { min: 2000,max: 5000, val: 0 }
+    };
+
+    const itemDescs = {
+        bridalBouquet:       'Created using high quality blooms to suit your theme and style.',
+        bridesmaidBouquet:   'Created to compliment the bride and their dresses.',
+        buttonhole:          'Be it a single bloom or something more elaborate such as a pocket square or lapel design.',
+        corsage:             'Delicate wired &amp; glued designs for female members of the bridal party. Can be worn in multiple ways. \n (Mums, Grandmother etc)',
+        lowCentrepiece:      'From low and compact posies to tall statement florals, we can do it all!',
+        highCentrepiece:     'From low and compact posies to tall statement florals, we can do it all!',
+        pedestalDisplay:     'Large front facing designs to be utilised throughout the day.',
+        statementFlorals:    'Large installations for your special day.'
+    };
+
+    var prices = pricesClassic;
+
+    document.getElementById('classicBtn').addEventListener('click', function() {
+        prices = pricesClassic;
+        init();
+    });
+    
+    document.getElementById('coutureBtn').addEventListener('click', function() {
+        prices = pricesCouture;
+        init();
+    });
 
     let totalVal = { min: 0, max: 0 };
 
@@ -21,11 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function setDesc(id, item) {
+    function setDesc(id, desc) {
         const elParent = document.getElementById(id);
         const el = elParent.querySelector('.item-description');
         if (el) {
-            el.textContent = `${item.desc}`;
+            el.textContent = `${desc}`;
         }
     }
 
@@ -50,10 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
         update();
         allItems.forEach(control => {
             let itemId = control.id;
-            let item = prices[itemId];
-            if (item) {
-                setPrice(itemId, item);
-                setDesc(itemId, item);
+            let itemPrice = prices[itemId];
+            let itemDesc = itemDescs[itemId];
+            if (itemPrice) {
+                setPrice(itemId, itemPrice);
+                setDesc(itemId, itemDesc);
             }
         });
     }
