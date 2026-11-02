@@ -23,24 +23,28 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const itemDescs = {
-        bridalBouquet:       'Created using high quality blooms to suit your theme and style.',
+        bridalBouquet:       'A natural hand tied bouquet or a cascading formal design. \n Created using high quality blooms to suit your theme and style.',
         bridesmaidBouquet:   'Created to compliment the bride and their dresses.',
         buttonhole:          'Be it a single bloom or something more elaborate such as a pocket square or lapel design.',
         corsage:             'Delicate wired &amp; glued designs for female members of the bridal party. Can be worn in multiple ways. \n (Mums, Grandmother etc)',
-        lowCentrepiece:      'From low and compact posies to tall statement florals, we can do it all!',
-        highCentrepiece:     'From low and compact posies to tall statement florals, we can do it all!',
+        lowCentrepiece:      'A low bowl, a group of bud vases filled, or low table scape.',
+        highCentrepiece:     'A tall larger arrangement presented on a box stand or pedestal in the middle of the table.',
         pedestalDisplay:     'Large front facing designs to be utilised throughout the day.',
-        statementFlorals:    'Large installations for your special day.'
+        statementFlorals:    'Large installations for your special day. \n (Pricing dependent on location and installation requirements) '
     };
 
     var prices = pricesClassic;
 
     document.getElementById('classicBtn').addEventListener('click', function() {
+        classicBtn.classList.add("active");
+        coutureBtn.classList.remove("active");
         prices = pricesClassic;
         init();
     });
     
     document.getElementById('coutureBtn').addEventListener('click', function() {
+        coutureBtn.classList.add("active");
+        classicBtn.classList.remove("active");
         prices = pricesCouture;
         init();
     });
@@ -94,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     init();
+    classicBtn.classList.add("active");
 
     // Quantity Controls
     document.querySelectorAll('.row').forEach(control => {

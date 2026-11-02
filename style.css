@@ -155,3 +155,30 @@ body {
         font-size: 13px;
     }
 }
+
+.priceingOption {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.priceingOptionBtn {
+    padding: 10px 24px;
+    background: #eef2e3;
+    color: #30442b;
+    border: 1px solid #5e6b40;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.priceingOptionBtn:hover {
+    background: #dfe6cf;
+}
+
+.priceingOptionBtn.active {
+    background: #5e6b40;
+    color: #eef2e3;
+}
+
